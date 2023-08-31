@@ -1,9 +1,12 @@
-# snippets
+---
+title: "snippets"
+format: gfm
+---
 
-Mutate multiple columns, keeping original and appending names to the new
-ones.
 
-``` r
+Mutate multiple columns, keeping original and appending names to the new ones.
+
+```{r message=FALSE}
 library(dplyr)
 
 data.frame(x1 = rnorm(5, mean = 100),
@@ -13,16 +16,10 @@ data.frame(x1 = rnorm(5, mean = 100),
                 .names = '{fn}_{col}'))
 ```
 
-             x1       x2   log_x1   log_x2
-    1  97.90491 1000.651 4.583997 6.908406
-    2  99.97810 1000.149 4.604951 6.907904
-    3 103.01215 1000.832 4.634847 6.908587
-    4  98.03969 1001.224 4.585372 6.908979
-    5  99.93607 1000.441 4.604531 6.908196
 
 Scraping Excel files embedded in a website. FHWA TVT example.
 
-``` r
+```{r message=FALSE}
 library(rio)
 library(rvest)
 
@@ -38,3 +35,20 @@ df <- data.frame(links = paste0(root, html_attr(html_nodes(pg, 'a'), 'href')))
 xlsx_url <- df$links[grep('.xlsx', df$links)][1]
 xlsx_df <- import(xlsx_url, which = 6) # "which" selects the sheet name/number for Excel files
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
