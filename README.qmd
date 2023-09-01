@@ -38,6 +38,23 @@ xlsx_df <- import(xlsx_url, which = 6) # "which" selects the sheet name/number f
 
 
 
+US map plotting
+
+```{r}
+library(usmap)
+
+statepop |> 
+  plot_usmap(data = _, region = 'state', values = 'pop_2015')
+
+# dataframe can't have additional variables
+
+# statepop |> 
+  # dplyr::mutate(x = pop_2015 + 10) |> 
+  # plot_usmap(data = _, region = 'state', values = 'pop_2015')
+
+# Error in `[.data.frame`(result, , c(setdiff(names(result), names(data)), :
+# undefined columns selected
+```
 
 
 

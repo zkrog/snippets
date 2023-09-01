@@ -13,12 +13,12 @@ data.frame(x1 = rnorm(5, mean = 100),
                 .names = '{fn}_{col}'))
 ```
 
-             x1       x2   log_x1   log_x2
-    1  97.90491 1000.651 4.583997 6.908406
-    2  99.97810 1000.149 4.604951 6.907904
-    3 103.01215 1000.832 4.634847 6.908587
-    4  98.03969 1001.224 4.585372 6.908979
-    5  99.93607 1000.441 4.604531 6.908196
+             x1        x2   log_x1   log_x2
+    1 100.50771 1000.1849 4.610234 6.907940
+    2  98.68160 1000.7564 4.591899 6.908511
+    3  98.64793  998.1787 4.591557 6.905932
+    4  99.35667 1001.3662 4.598716 6.909121
+    5 101.30587 1002.5336 4.618144 6.910286
 
 Scraping Excel files embedded in a website. FHWA TVT example.
 
@@ -37,4 +37,26 @@ df <- data.frame(links = paste0(root, html_attr(html_nodes(pg, 'a'), 'href')))
 # import Excel file
 xlsx_url <- df$links[grep('.xlsx', df$links)][1]
 xlsx_df <- import(xlsx_url, which = 6) # "which" selects the sheet name/number for Excel files
+```
+
+US map plotting
+
+``` r
+library(usmap)
+
+statepop |> 
+  plot_usmap(data = _, region = 'state', values = 'pop_2015')
+```
+
+![](README_files/figure-commonmark/unnamed-chunk-3-1.png)
+
+``` r
+# dataframe can't have additional variables
+
+# statepop |> 
+  # dplyr::mutate(x = pop_2015 + 10) |> 
+  # plot_usmap(data = _, region = 'state', values = 'pop_2015')
+
+# Error in `[.data.frame`(result, , c(setdiff(names(result), names(data)), :
+# undefined columns selected
 ```
